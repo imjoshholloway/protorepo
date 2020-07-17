@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package example.v1;
+
+option go_package = "github.com/imjoshholloway/protorepo;examplev1";
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+       info: {
+               title: "Example V1";
+               version: "1.0";
+       };
+};
+
+// Example is an example service to demonstrate using gRPC to create RPC style services.
+//
+// Feel free to add a new rpc endpoint here and implement it in the example service.
+// Doing this should be a rite of passage for new team members.
+service ExampleService {
+  // HelloWorld responds with "Hello, World".
+  rpc HelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {
+    option (google.api.http) = {
+      get: "/v1/example/hello"
+    };
+  }
+  // HelloUser responds with "Hello, {user}" where the user is retrieved from the request uri.
+  rpc HelloUser(HelloUserRequest) returns (HelloUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/example/hello/{name}"
+    };
+  }
+}
+
+message HelloWorldRequest {}
+
+message HelloWorldResponse {
+  string greeting = 1;
+}
+
+message HelloUserRequest {
+  string name = 1;
+}
+
+message HelloUserResponse {
+  string greeting = 1;
+}

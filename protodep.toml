@@ -1,0 +1,11 @@
+proto_outdir = "./third_party/proto"
+
+[[dependencies]]
+  target = "github.com/googleapis/api-common-protos/google/api"
+  revision = "be41e82ef4af6406b4cf331af00a837f813c0c3bj"
+  path = "google/api"
+
+[[dependencies]]
+  target = "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+  revision = "v1.14.6"
+  path = "protoc-gen-swagger/options"
